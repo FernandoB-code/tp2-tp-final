@@ -8,9 +8,10 @@ async function getAllUsers(){
     const connectiondb = await connection.getConnection();
     const users = await connectiondb.db('tecno')
                         .collection('usuarios')
-                        .find()
-                        .toArray();
+                        .find()         
+                        .toArray();                        
     return users;
+    
 }
 
 async function addUser(user){

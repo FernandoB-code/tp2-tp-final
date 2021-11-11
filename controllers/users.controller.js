@@ -3,7 +3,7 @@ const UserService = require('../services/user.service')
 const getAllUsers = async function (req, res, next) {
   const users = await UserService.getAllUsers() 
   
-  res.send(users)
+  return res.send(users)
   res.json(users)
 }
 
@@ -22,9 +22,12 @@ const loginUser = async (req, res) => {
   try {
     const { user, token } = UserService.login(req.body.email, req.body.password)
 
+console.log( { user, token } )
+
     res.send({ user, token })
   } catch (error) {
     res.status(401).send(error.message)
+    
   }
 }
 
