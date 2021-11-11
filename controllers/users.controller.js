@@ -1,7 +1,7 @@
 const UserService = require('../services/user.service')
 
 const getAllUsers = async function (req, res, next) {
-  const users = await UserService.getAllUsers()
+  const users = await UserService.getAllUsers() 
   
   res.send(users)
   res.json(users)
@@ -12,7 +12,7 @@ const createUser = async (req, res) => {
     const result = await UserService.addUser(req.body)
     res.send(result)
   } catch (error) {
-    res.status(404).send(error.message)
+    res.status(409).json( {error: error.message})
   }
 }
 
