@@ -1,10 +1,8 @@
 const UserService = require('../services/user.service')
 
-const getProductos = async function (req, res, next) {
-  const productos = await UserService.getProductos() 
-  
-  return res.send(productos)
-  res.json(productos)
+const getUsers = async function (req, res, next) {
+  const users = await UserService.getUsers()
+  return res.send(users)
 }
 
 const createUser = async (req, res) => {
@@ -27,4 +25,4 @@ const loginUser = async (req, res) => {
   }
 }
 
-module.exports = { getProductos, createUser, loginUser }
+module.exports = { getUsers, createUser, loginUser }

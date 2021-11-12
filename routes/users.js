@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const auth = require('../middleware/auth');
-const { getProductos, createUser, loginUser } = require('../controllers/users.controller')
+const { getUsers, createUser, loginUser } = require('../controllers/users.controller')
 
 /* GET users listing. */
 // api/users/
-router.get('/', getProductos);
+router.get('/', getUsers);
 
 router.post('/', createUser);
 
