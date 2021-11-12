@@ -27,19 +27,12 @@ async function addProducto(producto){
     return result;
 }
 
-async function updateProducto(id){
+async function updateProducto(id,nuevoStock){
     const clientmongo = await connection.getConnection();
-    const producto = await clientmongo.db('tecno')
-                    .collection('productos')
-                    .findOne({_id: new objectId(id)});
-    const newvalues = { $set:{
-            stock: producto.stock,
-        }
-    };
-
+    let stockNuevo = parseInt(Object.values(nuevoStock)[0])
     const result = await clientmongo.db('tecno')
                     .collection('productos')
-                    .updateOne(producto, newvalues);
+                    .updateOne({_id: new objectId(id)}, { $set: { stock: stockNuevo }});
     return result;
 }
 

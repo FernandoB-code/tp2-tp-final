@@ -2,9 +2,9 @@ const ProductoRepository = require('../data/productos')
 const { generateAuthToken } = require('./auth.service')
 
 module.exports = {
-  update: async (id) => {
-    const producto = await ProductoRepository.updateProducto(id)
-    return producto
+  update: async (id,nuevoStock) => {
+    const productoUpdate = await ProductoRepository.updateProducto(id,nuevoStock)
+    return productoUpdate
   },
   getProductos: async () => {
     return ProductoRepository.getProductos()
