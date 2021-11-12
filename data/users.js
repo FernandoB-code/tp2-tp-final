@@ -48,11 +48,11 @@ async function findByCredentials(email, password){
                         .collection('usuarios')
                         .findOne({email: email});
     if(!user){
-        throw new Error('Credenciales no validas');
+        throw new Error('Credenciales no validas!');
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if(!isMatch){
-        throw new Error('Credenciales no validas');
+        throw new Error('Credenciales no validas!!!');
     }
     return user;
 }
