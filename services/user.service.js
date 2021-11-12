@@ -7,8 +7,8 @@ module.exports = {
     const token = generateAuthToken(user)
     return {user,token}
   },
-  getAllUsers: async () => {
-    return UserRepository.getAllUsers()
+  getProductos: async () => {
+    return UserRepository.getProductos()
   },
   addUser: async (user) => {
     return UserRepository.addUser(user)

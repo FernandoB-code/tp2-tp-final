@@ -4,13 +4,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-async function getAllUsers(){
+async function getProductos(){
     const connectiondb = await connection.getConnection();
-    const users = await connectiondb.db('tecno')
-                        .collection('usuarios')
+    const productos = await connectiondb.db('tecno')
+                        .collection('productos')
                         .find()         
                         .toArray();                        
-    return users;
+    return productos;
     
 }
 
@@ -57,4 +57,4 @@ async function findByCredentials(email, password){
     return user;
 }
 
-module.exports = {addUser, getUser, findByCredentials, getAllUsers};
+module.exports = {addUser, getUser, findByCredentials, getProductos};
