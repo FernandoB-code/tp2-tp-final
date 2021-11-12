@@ -4,11 +4,8 @@ const { generateAuthToken } = require('../services/auth.service')
 module.exports = {
   login: async (email, password) => {
     const user = await UserRepository.findByCredentials(email, password)
-    
     const token = generateAuthToken(user)
-   
-   return { user, token }
-   
+    return {user,token}
   },
   getAllUsers: async () => {
     return UserRepository.getAllUsers()

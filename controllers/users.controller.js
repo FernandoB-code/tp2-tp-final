@@ -20,11 +20,8 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const { user, token } = UserService.login(req.body.email, req.body.password)
-
-console.log( { user, token } )
-
-    res.send({ user, token })
+    const {user,token} = await UserService.login(req.body.email, req.body.password)
+    res.send({user,token})
   } catch (error) {
     res.status(401).send(error.message)
     
