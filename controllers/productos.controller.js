@@ -18,8 +18,7 @@ const createProducto = async (req, res) => {
 
 const updateProducto = async (req, res) => {
   try {
-    const producto = await ProductoService.update(req.params.id,JSON.parse(JSON.stringify(req.body)))
-    console.log(JSON.parse(JSON.stringify(req.body)));
+    const producto = await ProductoService.updateProducto(req.params.id,JSON.parse(JSON.stringify(req.body)))
     res.send(producto)
   } catch (error) {
     res.status(401).send(error.message)
