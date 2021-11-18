@@ -5,7 +5,7 @@ const { getUsers, createUser, loginUser } = require('../controllers/users.contro
 
 /* GET users listing. */
 // api/users/
-router.get('/', getUsers);
+router.get('/',auth, getUsers);
 
 router.post('/', createUser);
 
