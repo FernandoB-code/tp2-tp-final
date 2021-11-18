@@ -14,9 +14,6 @@ const validar = (user) =>{
             .max(15)
             .required(),
     })
-        .with('email', 'password')
-        .xor('password', 'access_token')
-        .with('password', 'repeat_password');
 
     return scheme.validate(user)
 }
