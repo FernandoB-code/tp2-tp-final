@@ -44,4 +44,28 @@ async function deleteProducto(id){
     return result;
 }
 
-module.exports = {getProductos, getProducto, addProducto, updateProducto, deleteProducto};
+async function addCompra(compra){
+    const clientmongo = await connection.getConnection();
+    let venta = {
+        id_comprador: "",
+        nombre: "",
+        apellido: "",
+        productos: [],
+        total: 0,
+    }
+    for (let i = 0; i < compra.length; i++) {
+        const producto = {
+            _id: compra[i]._id,
+            producto: compra[i].producto,
+            precio: compra[i].precio,
+        }
+        venta.productos.push(producto)
+        venta.total += parseInt(compra[i].precio)
+    }
+    const result = await clientmongo.db('tecno')
+                .collection('compras')
+                .insert(venta);
+    return result;
+}
+
+module.exports = {getProductos, getProducto, addProducto, updateProducto, deleteProducto, addCompra};

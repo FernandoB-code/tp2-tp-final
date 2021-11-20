@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const joi = require('joi');
 const productos = require('../data/productos');
-const { getProductos, createProducto, updateProducto } = require('../controllers/productos.controller');
+const { getProductos, createProducto, updateProducto, createCompra } = require('../controllers/productos.controller');
 
 
 // /api/productos/
@@ -11,6 +11,9 @@ router.get('/', getProductos);
 router.post('/', createProducto);
 
 router.put('/:id', updateProducto);
+
+router.post('/compra', createCompra);
+
 
 
 router.get('/:id', async (req,res)=>{

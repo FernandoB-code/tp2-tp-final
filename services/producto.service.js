@@ -11,5 +11,8 @@ module.exports = {
   },
   addProducto: async (user) => {
     return ProductoRepository.addProducto(user)
+  },
+  addCompra: async (compra) => {
+    return ProductoRepository.addCompra(compra)
   }
 }

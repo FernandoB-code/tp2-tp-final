@@ -25,4 +25,13 @@ const updateProducto = async (req, res) => {
   }
 }
 
-module.exports = { getProductos, createProducto, updateProducto }
+const createCompra = async (req, res) => {
+  try {
+    const result = await ProductoService.addCompra(req.body)
+    res.send(result)
+  } catch (error) {
+    res.status(409).json( {error: error.message})
+  }
+}
+
+module.exports = { getProductos, createProducto, updateProducto, createCompra }
