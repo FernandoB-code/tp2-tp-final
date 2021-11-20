@@ -47,20 +47,21 @@ async function deleteProducto(id){
 async function addCompra(compra){
     const clientmongo = await connection.getConnection();
     let venta = {
-        id_comprador: "",
-        nombre: "",
-        apellido: "",
+        id_comprador: compra.usuario._id,
+        nombre: compra.usuario.nombre,
+        apellido: compra.usuario.apellido,
         productos: [],
         total: 0,
+        fecha: new Date().toLocaleString()
     }
-    for (let i = 0; i < compra.length; i++) {
+    for (let i = 0; i < compra.compras.length; i++) {
         const producto = {
-            _id: compra[i]._id,
-            producto: compra[i].producto,
-            precio: compra[i].precio,
+            _id: compra.compras[i]._id,
+            producto: compra.compras[i].producto,
+            precio: compra.compras[i].precio,
         }
         venta.productos.push(producto)
-        venta.total += parseInt(compra[i].precio)
+        venta.total += parseInt(compra.compras[i].precio)
     }
     const result = await clientmongo.db('tecno')
                 .collection('compras')
