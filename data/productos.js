@@ -36,6 +36,14 @@ async function updateProducto(id,nuevoStock){
     return result;
 }
 
+async function updateStock(id,nuevoStock){
+    const clientmongo = await connection.getConnection();
+    const result = await clientmongo.db('tecno')
+                    .collection('productos')
+                    .updateOne({_id: new objectId(id)}, { $set: { stock: nuevoStock }});
+    return result;
+}
+
 async function deleteProducto(id){
     const clientmongo = await connection.getConnection();
     const result = await clientmongo.db('tecno')
@@ -47,26 +55,32 @@ async function deleteProducto(id){
 async function addCompra(compra){
     const clientmongo = await connection.getConnection();
     let venta = {
-        id_comprador: compra.usuario._id,
-        nombre: compra.usuario.nombre,
-        apellido: compra.usuario.apellido,
+        id_comprador: "",
+        nombre: "",
+        apellido: "",
         productos: [],
         total: 0,
         fecha: new Date().toLocaleString()
     }
-    for (let i = 0; i < compra.compras.length; i++) {
-        const producto = {
-            _id: compra.compras[i]._id,
-            producto: compra.compras[i].producto,
-            precio: compra.compras[i].precio,
+    for (let p of compra.carrito) {
+        let prod = await getProducto(p._id)
+        if(prod.stock >= p.cantidad) {
+            venta.productos.push({
+                _id: p._id,
+                producto: p.producto,
+                precio: p.precio,
+                cantidad: p.cantidad
+            })
+            await updateStock(p._id, prod.stock - p.cantidad)
+        } else {
+            throw Error('No hay suficiente stock disponible.')
         }
-        venta.productos.push(producto)
-        venta.total += parseInt(compra.compras[i].precio)
+        venta.total += p.precio * p.cantidad
     }
     const result = await clientmongo.db('tecno')
                 .collection('compras')
-                .insert(venta);
-    return result;
+                .insertOne(venta);
+    return result;  
 }
 
 module.exports = {getProductos, getProducto, addProducto, updateProducto, deleteProducto, addCompra};
