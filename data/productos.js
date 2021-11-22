@@ -55,9 +55,9 @@ async function deleteProducto(id){
 async function addCompra(compra){
     const clientmongo = await connection.getConnection();
     let venta = {
-        id_comprador: "",
-        nombre: "",
-        apellido: "",
+        id_comprador: compra.usuario._id,
+        nombre: compra.usuario.nombre,
+        apellido: compra.usuario.apellido,
         productos: [],
         total: 0,
         fecha: new Date().toLocaleString()
