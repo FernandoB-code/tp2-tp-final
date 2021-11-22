@@ -62,7 +62,7 @@ async function addCompra(compra){
         total: 0,
         fecha: new Date().toLocaleString()
     }
-    for (let p of compra.carrito) {
+    for (let p of compra.compras) {
         let prod = await getProducto(p._id)
         if(prod.stock >= p.cantidad) {
             venta.productos.push({
