@@ -15,8 +15,7 @@ async function getUsers(){
 }
 
 async function addUser(user){
-    const connectiondb = await connection.getConnection();
-    // los nombres de base de datos pueden cambiar   
+    const connectiondb = await connection.getConnection(); 
     user.password = await bcrypt.hash(user.password, 8);
     const usuario = await connectiondb.db('tecno')
                         .collection('usuarios')

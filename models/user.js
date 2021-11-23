@@ -7,9 +7,5 @@ module.exports = class User {
         this.edad = edad;
         this.direccion = direccion;
         this.altura = altura;
-
-//
-       
-
     }
 }

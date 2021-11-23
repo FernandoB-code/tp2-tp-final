@@ -14,8 +14,6 @@ const createProducto = async (req, res) => {
   }
 }
 
-// S. O. L. I. D.
-
 const updateProducto = async (req, res) => {
   try {
     const producto = await ProductoService.updateProducto(req.params.id,JSON.parse(JSON.stringify(req.body)))

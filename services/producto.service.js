@@ -9,8 +9,8 @@ module.exports = {
   getProductos: async () => {
     return ProductoRepository.getProductos()
   },
-  addProducto: async (user) => {
-    return ProductoRepository.addProducto(user)
+  addProducto: async (prod) => {
+    return ProductoRepository.addProducto(prod)
   },
   addCompra: async (compra) => {
     return ProductoRepository.addCompra(compra)
