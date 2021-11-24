@@ -1,4 +1,5 @@
 const ProductoService = require('../services/producto.service')
+const productfactory = require('../factories/product.factory')
 
 const getProductos = async function(req, res, next) {
   const productos = await ProductoService.getProductos() 
@@ -7,6 +8,8 @@ const getProductos = async function(req, res, next) {
 
 const createProducto = async (req, res) => {
   try {
+    const valid = await productfactory.create(req.body)
+    console.log(valid)
     const result = await ProductoService.addProducto(req.body)
     res.send(result)
   } catch (error) {
