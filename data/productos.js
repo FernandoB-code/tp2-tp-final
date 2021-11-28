@@ -53,6 +53,7 @@ async function deleteProducto(id){
 }
 
 async function addCompra(compra){
+    console.log(compra)
     const clientmongo = await connection.getConnection();
     let venta = {
         id_comprador: compra.usuario._id,
@@ -73,6 +74,7 @@ async function addCompra(compra){
             })
             await updateStock(p._id, prod.stock - p.cantidad)
         } else {
+            console.log("ENTRO!")
             throw Error('No hay suficiente stock disponible.')
         }
         venta.total += p.precio * p.cantidad
