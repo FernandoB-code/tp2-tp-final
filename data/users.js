@@ -20,11 +20,14 @@ async function addUser(user){
     const usuario = await connectiondb.db('tecno')
                         .collection('usuarios')
                         .findOne({email: user.email});
+
+                        user.esAdmin = false;
     let result
     if (usuario) {
         result = "Usuario ya existente!"
         throw new Error("Usuario ya existente!")
     } else {
+
         result = await connectiondb.db('tecno')
                         .collection('usuarios')
                         .insertOne(user);
