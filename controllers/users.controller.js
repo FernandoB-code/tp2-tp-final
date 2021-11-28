@@ -1,4 +1,5 @@
 const UserService = require('../services/user.service')
+const UserFactory = require('../factories/user.factory')
 
 const getUsers = async function (req, res, next) {
   const users = await UserService.getUsers()
@@ -7,6 +8,7 @@ const getUsers = async function (req, res, next) {
 
 const createUser = async (req, res) => {
   try {
+    UserFactory.create(req.body)
     const result = await UserService.addUser(req.body)
     res.send(result)
   } catch (error) {
