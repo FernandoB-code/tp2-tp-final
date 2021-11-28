@@ -6,7 +6,6 @@ module.exports = class User {
         this.apellido = apellido;
         this.edad = edad;
         this.direccion = direccion;
-        this.altura = altura;
-        this.esAdmin = false;
+        this.altura = altura;       
     }
 }
