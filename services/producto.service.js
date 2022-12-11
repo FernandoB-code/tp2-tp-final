@@ -12,6 +12,11 @@ module.exports = {
   addProducto: async (prod) => {
     return ProductoRepository.addProducto(prod)
   },
+
+deleteProducto: async (prod) =>{
+  return ProductoRepository.deleteProducto(prod)
+  },
+
   addCompra: async (compra) => {
     return ProductoRepository.addCompra(compra)
   }

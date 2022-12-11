@@ -5,6 +5,6 @@ module.exports = {
     create: async (producto) => {
         const result = await productSchema.validateAsync(producto)
         console.log(result)                
-        return new Product(producto.imagen, producto.producto, producto.stock, producto.precio)
+        return new Product(producto.imagen, producto.producto, producto.stock, producto.precio, producto.cantidad)
     }
 }

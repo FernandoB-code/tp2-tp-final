@@ -26,6 +26,17 @@ const updateProducto = async (req, res) => {
   }
 }
 
+const deleteProducto = async (req, res) => {
+  try {
+    const producto = await ProductoService.deleteProducto(req.params.id,JSON.parse(JSON.stringify(req.body)))
+    res.send(producto)
+  } catch (error) {
+    res.status(401).send(error.message)
+  }
+
+
+}
+
 const createCompra = async (req, res) => {
   try {
     const result = await ProductoService.addCompra(req.body)
@@ -35,4 +46,4 @@ const createCompra = async (req, res) => {
   }
 }
 
-module.exports = { getProductos, createProducto, updateProducto, createCompra }
+module.exports = { getProductos, createProducto, updateProducto,deleteProducto, createCompra }
